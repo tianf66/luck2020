@@ -112,14 +112,14 @@ Page({
   //绘制canvas
   createNewImg: function () {
     let randomNumber = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
-
+    // let randomNumber = 0;
     if(randomNumber == 4 && this.data.sex == 'girl') {
       randomNumber += 1;
     }
     if(randomNumber == 6 && this.data.sex == 'boy') {
       randomNumber += 1;
     }
-    
+
     console.log(randomNumber);
     let luckItem = luckResultData[randomNumber];
     let ctx = wx.createCanvasContext('myCanvas'),
@@ -174,17 +174,17 @@ Page({
       //先绘制两个田字格
       let keyWordsList = luckItem.keyWords.split(',');
       if(keyWordsList.length == 1) {
-        ctx.drawImage(this.data.localTianUrl, 500 * _wrpx, 315 * _hrpx, 110 * _wrpx, 110 * _wrpx);
+        ctx.drawImage(this.data.localTianUrl, 500 * _wrpx, 325 * _hrpx, 110 * _wrpx, 110 * _wrpx);
         ctx.font = `normal bold ${parseInt(90 * _wrpx)}px 楷体`;
         ctx.setFillStyle('#d90000');
-        ctx.fillText(keyWordsList[0], 500 * _wrpx + 12 * _wrpx, 315 * _hrpx + 92 * _wrpx);
+        ctx.fillText(keyWordsList[0], 500 * _wrpx + 12 * _wrpx, 325 * _hrpx + 92 * _wrpx);
       } else {
-        ctx.drawImage(this.data.localTianUrl, 450 * _wrpx, 315 * _hrpx, 110 * _wrpx, 110 * _wrpx);
+        ctx.drawImage(this.data.localTianUrl, 450 * _wrpx, 325 * _hrpx, 110 * _wrpx, 110 * _wrpx);
         ctx.font = `normal bold ${parseInt(90 * _wrpx)}px 楷体`;
         ctx.setFillStyle('#d90000');
-        ctx.fillText(keyWordsList[0], 450 * _wrpx + 12 * _wrpx, 315 * _hrpx + 92 * _wrpx);
-        ctx.drawImage(this.data.localTianUrl, 580 * _wrpx, 315 * _hrpx, 110 * _wrpx, 110 * _wrpx);
-        ctx.fillText(keyWordsList[1], 580 * _wrpx + 12 * _wrpx, 315 * _hrpx + 92 * _wrpx);
+        ctx.fillText(keyWordsList[0], 450 * _wrpx + 12 * _wrpx, 325 * _hrpx + 92 * _wrpx);
+        ctx.drawImage(this.data.localTianUrl, 580 * _wrpx, 325 * _hrpx, 110 * _wrpx, 110 * _wrpx);
+        ctx.fillText(keyWordsList[1], 580 * _wrpx + 12 * _wrpx, 325 * _hrpx + 92 * _wrpx);
       }
       
     // end
