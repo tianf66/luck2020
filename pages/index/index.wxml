@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="container">
+
+  <!-- 性别选择 start -->
+  <view class="gender">
+    <radio-group class="radio-group" bindchange="gennderChange">
+        <radio  wx:for-items="{{genderList}}"
+                wx:key="name"
+                value="{{item.name}}"
+                class="{{item.className}}"
+                checked="{{item.checked}}">
+        </radio>
+    </radio-group>
+    <view class="gender-sex"></view>
+  </view>
+  <!-- end -->
+
+  <!-- 求签按钮 start -->
+  <button open-type="getUserInfo" bindgetuserinfo="subButton" lang="zh_CN" class="sub-button">
+    <image src="//i.opfed.com/luck/backButton.png"></image>
+  </button>
+
+  <!-- 摇签GIF start -->
+  <view wx:if="{{!ballot_result}}" class="ballot"></view>
+  <!-- end -->
+  <!-- 摇签 结果GIF start -->
+  <view wx:if="{{ballot_result}}" class="ballot_result"></view>
+  <!-- end -->
+</view>

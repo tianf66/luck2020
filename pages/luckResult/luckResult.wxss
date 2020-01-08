@@ -1,0 +1,31 @@
+/* pages/luckResult/luckResult.wxss */
+
+.luck_result {
+  width: 100%;
+}
+
+.button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  position: none;
+  font-family:DroidSansFallback;
+  font-size:30rpx;
+  letter-spacing:0;
+  /* line-height:80rpx; */
+  outline: none;
+  background: #FFFFFF;
+}
+button::after {
+  border: none;
+  outline: none;
+}
+
+action-sheet-item{
+  display: inline !important;
+  padding: 0 !important;
+}
+
+action-sheet {
+  z-index: 999999;
+}

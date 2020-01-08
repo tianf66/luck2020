@@ -1,0 +1,13 @@
+<!--pages/luckResult/luckResult.wxml-->
+<view class="luck_result"  bindlongpress="showAction">
+  <canvas class="canvas" style="width:{{_width}}px; height:{{_height}}px" canvas-id="myCanvas" />
+  <!--默认action-sheet为隐藏，由button触发-->
+  <!-- <action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
+     <action-sheet-item>
+           <button open-type="share">分享给好友</button>
+     </action-sheet-item>
+     <action-sheet-item>生成分享卡片</action-sheet-item> -->
+     <!--自动隐藏action-sheet-->
+  <!--    <action-sheet-cancel>取消</action-sheet-cancel>
+  </action-sheet> -->
+</view>
