@@ -120,7 +120,6 @@ Page({
       randomNumber += 1;
     }
 
-    console.log(randomNumber);
     let luckItem = luckResultData[randomNumber];
     let ctx = wx.createCanvasContext('myCanvas'),
         _width = this.data._width, //屏幕宽
@@ -244,7 +243,7 @@ Page({
 
         ctx.setFillStyle('#401b0a');
         ctx.font = `normal bold ${parseInt(28 * _wrpx)}px Microsoft YaHei`;
-        ctx.fillText(`${item.key} : `, 230 * _wrpx, constJi_y * _hrpx);
+        ctx.fillText(`${item.key} :`, 230 * _wrpx, constJi_y * _hrpx);
 
         // ctx.font = `normal ${parseInt(28 * _wrpx)}px Microsoft YaHei`;
         // ctx.fillText('——', 230 * _wrpx, constJi_y * _hrpx);
