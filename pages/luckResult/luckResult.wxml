@@ -1,5 +1,10 @@
 <!--pages/luckResult/luckResult.wxml-->
 <view class="luck_result"  bindlongpress="showAction">
+  <cover-view class="move-view" wx:if="{{showTipMove}}">
+    <cover-image class="move-image" src="../../image/move.png"></cover-image>
+    <cover-view>长按图片</cover-view>
+    <cover-view>即可下载保存</cover-view>
+  </cover-view>
   <canvas class="canvas" style="width:{{_width}}px; height:{{_height}}px" canvas-id="myCanvas" />
   <!--默认action-sheet为隐藏，由button触发-->
   <!-- <action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
@@ -10,4 +15,8 @@
      <!--自动隐藏action-sheet-->
   <!--    <action-sheet-cancel>取消</action-sheet-cancel>
   </action-sheet> -->
+  <cover-button class="change-luck" bindtap="changeLuck">
+    <cover-image src="../../image/change.png"></cover-image>
+    <cover-view>换一个</cover-view>
+  </cover-button>
 </view>

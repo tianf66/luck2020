@@ -20,7 +20,8 @@ Page({
     localImageUrl: '', //绘制的商品图片本地路径
     localCodeUrl: '', //绘制的二维码图片本地路径
     localTianUrl: '',//绘制的田字格图片本地路径
-    sex: ""
+    sex: "",
+    showTipMove: false
   },
 
   /**
@@ -31,9 +32,8 @@ Page({
     this.setData({
       sex: options.sex
     });
-    console.log(options);
     wx.showLoading({
-      title: '加载中',
+      title: '梗太多,计算中~',
     });
   },
 
@@ -87,7 +87,7 @@ Page({
           });
 
           // 创建canvas图片
-          that.createNewImg();
+          that.createNewImg(true);
         }
       },
       fail: function (res) {//失败回调
@@ -110,9 +110,9 @@ Page({
   },
 
   //绘制canvas
-  createNewImg: function () {
-    let randomNumber = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
-    // let randomNumber = 0;
+  createNewImg: function (isShowMove) {
+    let randomNumber = Math.floor(Math.random() * (11 - 0 + 1)) + 0;
+  
     if(randomNumber == 4 && this.data.sex == 'girl') {
       randomNumber += 1;
     }
@@ -360,30 +360,30 @@ Page({
           //通过不同的位置，调整文本的显示位置
           if (i == 0) {
             //属性 
-            ctx.font = 'normal 600 13px Microsoft YaHei';
+            ctx.font = `normal 600 ${parseInt(25 * _wrpx)}px Microsoft YaHei`;
             ctx.fillText(mData[i][0], x + 6 * + _wrpx, y + 10 * _hrpx);
             //属性值
-            ctx.font = 'normal 500 10px Microsoft YaHei';
-            ctx.fillText(mData[i][1], x + 10 * + _wrpx, y + 40 * _hrpx);
+            ctx.font = `normal 500 ${parseInt(23 * _wrpx)}px Microsoft YaHei`;
+            ctx.fillText(mData[i][1], x + 20 * + _wrpx, y + 40 * _hrpx);
           } else if (i == 1) {
-            ctx.font = 'normal 600 13px Microsoft YaHei';
+            ctx.font = `normal 600 ${parseInt(25 * _wrpx)}px Microsoft YaHei`;
             ctx.fillText(mData[i][0], x - 20 * _wrpx, y + 30 * _hrpx);
-            ctx.font = 'normal 500 10px Microsoft YaHei';
-            ctx.fillText(mData[i][1], x + 35 * + _wrpx, y + 30 * _hrpx);
+            ctx.font = `normal 500 ${parseInt(23 * _wrpx)}px Microsoft YaHei`;
+            ctx.fillText(mData[i][1], x + 40 * + _wrpx, y + 30 * _hrpx);
           } else if (i == 2) {
-            ctx.font = 'normal 600 13px Microsoft YaHei';
-            ctx.fillText(mData[i][0], x - 60 * _wrpx, y + 10 * _hrpx);
-            ctx.font = 'normal 600 10px Microsoft YaHei';
+            ctx.font = `normal 600 ${parseInt(25 * _wrpx)}px Microsoft YaHei`;
+            ctx.fillText(mData[i][0], x - 65 * _wrpx, y + 10 * _hrpx);
+            ctx.font = `normal 600 ${parseInt(23 * _wrpx)}px Microsoft YaHei`;
             ctx.fillText(mData[i][1], x - 50 * _wrpx, y + 40 * _hrpx);
           } else if (i == 3) {
-            ctx.font = 'normal 600 13px Microsoft YaHei';
+            ctx.font = `normal 600 ${parseInt(25 * _wrpx)}px Microsoft YaHei`;
             ctx.fillText(mData[i][0], x - 60 * _wrpx, y);
-            ctx.font = 'normal 600 10px Microsoft YaHei';
+            ctx.font = `normal 600 ${parseInt(23 * _wrpx)}px Microsoft YaHei`;
             ctx.fillText(mData[i][1], x - 50 * _wrpx, y + 30 * _hrpx);
           } else {
-            ctx.font = 'normal 600 13px Microsoft YaHei';
+            ctx.font = `normal 600 ${parseInt(25 * _wrpx)}px Microsoft YaHei`;
             ctx.fillText(mData[i][0], x - 20 * _wrpx, y - 10 * _hrpx);
-            ctx.font = 'normal 600 10px Microsoft YaHei';
+            ctx.font = `normal 600 ${parseInt(23 * _wrpx)}px Microsoft YaHei`;
             ctx.fillText(mData[i][1], x + 40 * _wrpx, y - 10 * _hrpx);
           }
 
@@ -397,7 +397,7 @@ Page({
 
     //绘制2020年标签 start
       let list = luckItem.label;
-      ctx.font = 'normal bold 12px Microsoft YaHei';
+      ctx.font = `normal bold ${parseInt(24 * _wrpx)}px Microsoft YaHei`;
       ctx.setFillStyle('#cb4646');
       ctx.fillText('2020年你会发生什么', 460 * _wrpx, 900 * _hrpx);
 
@@ -458,7 +458,7 @@ Page({
         // ctx.fill();
         // ctx.stroke();
         
-        ctx.font = 'normal bold 12px Microsoft YaHei';
+        ctx.font = `normal bold ${parseInt(25 * _wrpx)}px Microsoft YaHei`;
         ctx.setFillStyle('#401b0a');
         ctx.fillText(list[i], constLabelX + 9, constLabelY + 14);
       }
@@ -471,6 +471,19 @@ Page({
     // 显示绘制
     ctx.draw();
     wx.hideLoading();
+
+    
+    if(isShowMove) {
+      this.setData({
+        showTipMove: true
+      });
+      setTimeout(() => {
+        this.setData({
+          showTipMove: false
+        });
+      }, 3000);
+    }
+    
 
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
     setTimeout(function () {
@@ -487,6 +500,10 @@ Page({
         }
       });
     }, 500);
+  },
+
+  changeLuck: function() {
+    this.createNewImg(false);
   },
 
   showAction: function () {
