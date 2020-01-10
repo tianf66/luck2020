@@ -14,11 +14,9 @@ Page({
     _height: 0,//手机屏高
     loadImagePath: '',//下载的图片
     imageUrl: 'https://i.opfed.com/luck/prediction_bg_result.png', //主图网络路径
-    codeUrl: 'https://i.opfed.com/luck/code.jpg',//二维码网络路径
     tianUrl: 'https://i.opfed.com/luck/tian.png',//田字格url
     userCoverUrl: '',//用户头像
     localImageUrl: '', //绘制的商品图片本地路径
-    localCodeUrl: '', //绘制的二维码图片本地路径
     localTianUrl: '',//绘制的田字格图片本地路径
     sex: "",
     showTipMove: false
@@ -41,7 +39,6 @@ Page({
     /*获取手机宽高*/
     let _this = this;
     let imgUrl = this.data.imageUrl;
-    let qrcodeUrl = this.data.codeUrl;
     let userCoverUrl = wx.getStorageSync('userInfo').avatarUrl;
     let tianUrl = this.data.tianUrl;
     wx.getSystemInfo({
@@ -53,7 +50,7 @@ Page({
           _hrpx: res.windowHeight / 1472
         })
         // 获取图片信息生成canvas
-        _this.getImginfo([imgUrl, qrcodeUrl, userCoverUrl, tianUrl], 0);
+        _this.getImginfo([imgUrl, userCoverUrl, tianUrl], 0);
       }
     })
   },
@@ -72,16 +69,11 @@ Page({
           });
           that.getImginfo(urlArr, 1);
         } else if(_type === 1) {
-          that.setData({ //二维码
-            localCodeUrl: res.path,
-          });
-          that.getImginfo(urlArr, 2);
-        } else if(_type === 2) {
           that.setData({ //用户头像
             userCoverUrl: res.path,
           });
-          that.getImginfo(urlArr, 3);
-        } else if(_type === 3) {
+          that.getImginfo(urlArr, 2);
+        } else if(_type === 2) {
           that.setData({ //田字格
             localTianUrl: res.path,
           });
@@ -464,10 +456,6 @@ Page({
       }
     //end
 
-
-    //绘制二维码 start
-      ctx.drawImage(this.data.localCodeUrl, 190 * _wrpx, 1180 * _hrpx, 110 * _wrpx, 110 * _wrpx);
-    //end
     // 显示绘制
     ctx.draw();
     wx.hideLoading();
