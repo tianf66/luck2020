@@ -165,7 +165,7 @@ Page({
       ctx.font = 'normal bold 14px Microsoft YaHei';
       ctx.setFillStyle('#842624');
       ctx.fillText(userName, 230 * _wrpx, 360 * _hrpx);
-      ctx.fillText('的新年运势', 230 * _wrpx, 400 * _hrpx, 150 * _wrpx);
+      ctx.fillText('的鼠年运势', 230 * _wrpx, 400 * _hrpx, 150 * _wrpx);
     //end
 
 
@@ -531,7 +531,7 @@ Page({
       filePath: self.data.loadImagePath,
       success(res) {
         wx.showToast({
-          title: '已保存到系统相册',
+          title: '保存成功',
           icon: 'success',
           duration: 2000
         });

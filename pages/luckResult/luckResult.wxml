@@ -15,8 +15,8 @@
      <!--自动隐藏action-sheet-->
   <!--    <action-sheet-cancel>取消</action-sheet-cancel>
   </action-sheet> -->
-  <cover-button class="change-luck" bindtap="changeLuck">
-    <cover-image src="../../image/change.png"></cover-image>
-    <cover-view>换一个</cover-view>
-  </cover-button>
+  <!-- <view class="change-luck" bindtap="changeLuck">
+    <image src="../../image/change.png"></image>
+    <view>换一个</view>
+  </view> -->
 </view>

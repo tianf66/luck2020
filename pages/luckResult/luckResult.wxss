@@ -44,8 +44,9 @@
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 0.5%;
+  /* bottom: 0.5%; */
   left: 50%;
+  margin-bottom: 30px;
   width: 130rpx;
   height: 40rpx;
   border-radius: 5px;
@@ -58,7 +59,7 @@
   transform: translate(-50%, 0.5%);
 }
 
-.change-luck cover-image {
+.change-luck image {
   width: 35rpx;
   height: 35rpx;
   padding: 0 6rpx;
