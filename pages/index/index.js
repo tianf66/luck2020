@@ -41,5 +41,21 @@ Page({
     this.setData({
       ballot_result: false
     });
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '快来预测属于你的鼠年关键字吧~',
+      path: `pages/index/index`,
+      success: function (res) {
+        wx.showToast({
+          title: '分享成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    }
   }
 })

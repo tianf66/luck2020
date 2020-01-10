@@ -15,9 +15,11 @@ Page({
     loadImagePath: '',//下载的图片
     imageUrl: 'https://i.opfed.com/luck/prediction_bg_result.png', //主图网络路径
     tianUrl: 'https://i.opfed.com/luck/tian.png',//田字格url
+    coderationUrl: 'https://i.opfed.com/luck/code.png',
     userCoverUrl: '',//用户头像
     localImageUrl: '', //绘制的商品图片本地路径
     localTianUrl: '',//绘制的田字格图片本地路径
+    localCoderationUrl: '',
     sex: "",
     showTipMove: false
   },
@@ -39,6 +41,7 @@ Page({
     /*获取手机宽高*/
     let _this = this;
     let imgUrl = this.data.imageUrl;
+    let qrcodeUrl = this.data.coderationUrl;
     let userCoverUrl = wx.getStorageSync('userInfo').avatarUrl;
     let tianUrl = this.data.tianUrl;
     wx.getSystemInfo({
@@ -50,7 +53,7 @@ Page({
           _hrpx: res.windowHeight / 1472
         })
         // 获取图片信息生成canvas
-        _this.getImginfo([imgUrl, userCoverUrl, tianUrl], 0);
+        _this.getImginfo([imgUrl, userCoverUrl, tianUrl, qrcodeUrl], 0);
       }
     })
   },
@@ -76,6 +79,11 @@ Page({
         } else if(_type === 2) {
           that.setData({ //田字格
             localTianUrl: res.path,
+          });
+          that.getImginfo(urlArr, 3);
+        } else if(_type === 3) {
+          that.setData({
+            localCoderationUrl: res.path,
           });
 
           // 创建canvas图片
@@ -456,6 +464,13 @@ Page({
       }
     //end
 
+
+    let codeWidth = 230, codeHeight = 60;
+    if(_width < 365 || _height < 667)  {
+      codeWidth = 190, codeHeight = 50;
+    }
+    ctx.drawImage(this.data.localCoderationUrl, 190 * _wrpx, 1180 * _hrpx, codeWidth, codeHeight);
+
     // 显示绘制
     ctx.draw();
     wx.hideLoading();
@@ -538,7 +553,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '2020神预测',
+      title: '快来预测属于你的鼠年关键字吧~',
       path: `pages/index/index`,
       success: function (res) {
         wx.showToast({
